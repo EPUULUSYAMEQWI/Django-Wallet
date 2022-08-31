@@ -2,7 +2,7 @@
 from locale import currency
 from django.contrib import admin
 
-from .models import Customer,Wallet,Account,Transaction,Card,ThirdParty ,Notification ,Receipt,Loan,Reward
+from .models import Customer,Wallet,Account,Transaction,Card,ThirdParty ,Notification ,Receipt,Loan,Reward,Currency
 # Register your models here.
 class CustomerAdmin(admin.ModelAdmin):
     list_display=('first_name','last_name','age','email',)
@@ -53,3 +53,8 @@ class RewardAdmin(admin.ModelAdmin):
     list_display=('points','date','transaction','customer','gender')
     search_fields=('points','date')
 admin.site.register(Reward,RewardAdmin)
+
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display=('amount','symbol','country_of_origin')
+    search_fields=('amount','symbol')
+admin.site.register(Currency,CurrencyAdmin)

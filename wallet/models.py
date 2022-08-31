@@ -1,14 +1,10 @@
-
-# from email import message
-# from email.mime import image
 from django.db import models
-# from django.forms import DateTimeField
 from django.utils import timezone
 
-# Create your models here.
+
 class Customer(models.Model):
-    first_name=models.CharField(max_length=20,null=True)
-    last_name=models.CharField(max_length=20,null=True)
+    first_name=models.CharField(max_length=15,null=True)
+    last_name=models.CharField(max_length=15,null=True)
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -35,32 +31,27 @@ class Customer(models.Model):
     
     employment_status = models.CharField(max_length=1, choices=EMPLOYMENT_CHOICES,null=True)
 
-# class Currency(models.Model):
-#     amount=models.IntegerField(default=0)
-#     symbol=models.CharField(max_length=25, null=True)
-#     country_of_origin=models.CharField(max_length=25, null=True)
+class Currency(models.Model):
+    amount=models.IntegerField(default=0)
+    symbol=models.CharField(max_length=25, null=True)
+    country_of_origin=models.CharField(max_length=25, null=True)
 
 class Wallet(models.Model):
-    # balance=models.IntegerField(default=0)
     customers=models.ForeignKey('Customer', on_delete=models.CASCADE, related_name ='Wallet_customers')
     pin=models.TextField(max_length=6,null=True)
-    # currency =models.ForeignKey('Currency', on_delete=models.CASCADE, related_name ='Wallet_currency')
     active=models.BooleanField(default=False)
     date_created=models.DateTimeField(default=timezone.now)
-    # type=models.CharField(max_length=15,null=True)
-
+    
 class Account(models.Model):
     account_type=models.CharField(max_length=20,null=True)
     account_Name=models.CharField(max_length=20,null=True)
     savings=models.IntegerField()
-    # wallet=models.ForeignKey('Wallet', on_delete=models.CASCADE, related_name ='Account_Wallet')
     destination=models.ForeignKey('Wallet',on_delete=models.CASCADE, related_name ='Account_Destination')
 
 class Transaction(models.Model):
     transaction_type=models.CharField(max_length=10,null=True)
     transaction_charge=models.IntegerField()
     transaction_date=models.DateTimeField(default=timezone.now)
-    # receipt=models.ForeignKey('Receipts',on_delete=models.CASCADE, related_name='Transaction_receipt')
     original_account=models.ForeignKey('Account', on_delete=models.CASCADE, related_name='Transaction_original_account')
     destination_account=models.ForeignKey('Account', on_delete=models.CASCADE, related_name='Transaction_destination_account')
 
@@ -84,8 +75,6 @@ class ThirdParty(models.Model):
 
 class Notification(models.Model):
     date_created=models.DateTimeField(default=timezone.now)
-    # message=models.CharField(max_length=15,null=True)
-    # recipient=models.ForeignKey('Customer', on_delete=models.CASCADE, related_name ='Notifications_recipient') 
     active=models.BooleanField()  
     image = models.ImageField(upload_to='image_pictures/',null=True)
 
@@ -99,7 +88,6 @@ class Receipt(models.Model):
 class Loan(models.Model):
     loan_type=models.CharField(max_length=25, null=True)
     amount=models.IntegerField()
-    # wallet=models.ForeignKey('Wallet', on_delete=models.CASCADE, related_name ='Loan_wallet')
     date=models.DateTimeField(default=timezone.now)
     loan_term=models.IntegerField()
     due_date=models.DateField(default=timezone.now)

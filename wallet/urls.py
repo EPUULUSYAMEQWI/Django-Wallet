@@ -17,18 +17,22 @@ from.views import register_reward
 
 
 
-urlpatterns = [ path("register/",register_customer,name="registration")]
-urlpatterns = [ path("register/",register_currency,name="registration")]
-urlpatterns = [ path("register/",register_wallet,name="registration")]
-urlpatterns = [ path("register/",register_account,name="registration")]
-urlpatterns = [ path("register/",register_transaction,name="registration")]
-urlpatterns = [ path("register/",register_card,name="registration")]
-urlpatterns = [ path("register/",register_thirdparty,name="registration")]
-urlpatterns = [ path("register/",register_thirdparty,name="registration")]
-urlpatterns = [ path("register/",register_notification,name="registration")]
-urlpatterns = [ path("register/",register_receipt,name="receipt")]
-urlpatterns = [ path("register/",register_loan,name="receipt")]
-urlpatterns = [ path("register/",register_reward,name="receipt")]
+urlpatterns = [
+    path("registerCustomer/",register_customer,name="registration"),
+    path("registerCurrency/",register_currency,name="registration"),
+    path("registerWallet/",register_wallet,name="registration"),
+    path("registerAccount/",register_account,name="registration"),
+    path("registerTranscation/",register_transaction,name="registration"),
+    path("registerCard/",register_card,name="registration"),
+    path("registerThirdparty/",register_thirdparty,name="registration"),
+    path("registerNotifiacation/",register_notification,name="registration"),
+    path("registerReceipt/",register_receipt,name="receipt"),
+    path("registerLoan/",register_loan,name="receipt"),
+    path("registerReward/",register_reward,name="receipt"),
+
+]
+
+
 
 
 
